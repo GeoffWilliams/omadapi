@@ -14,7 +14,7 @@ Features:
 * Default hostname `omadapi` (your router may register this if you run something good like OpenWrt)
 * Access via ssh
 * **CHANGE THE PASSWORD!!!**
-* Java memory is tuned for 1GB Rasberry Pi since thats what im rocking. If you have more memory adjust `-Xmx` in `/etc/init.d/tpeap`. Dont forget to leave memory for the system!
+* Java memory is tuned for 1GB Rasberry Pi since thats what im rocking. If you have more memory adjust `-Xmx` in `/opt/tplink/EAPController/bin/control.sh`. Dont forget to leave memory for the system!
 
 ## Omada
 When booted, omada will be available at:
