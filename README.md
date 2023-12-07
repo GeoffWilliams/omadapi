@@ -8,7 +8,7 @@ Features:
 * OpenJDK 17
 * jsvc 1.3.4
 * Plug and play - just burn the image ssh in on ethernet (look for IP address on router)
-* Omada 5.12.7 is already installed and set to start automatically
+* Omada is already installed and set to start automatically
 * Default username: `omada`
 * Default password: `omada`
 * Default hostname `omadapi` (your router may register this if you run something good like OpenWrt)
