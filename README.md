@@ -39,8 +39,6 @@ Dont - its controlled automatically by omada
 
 ## Upgrades
 
-Havent tested these procedures yet since no updates:
-
 ### Option 1 (swap)
 
 Backup settings:
@@ -67,9 +65,9 @@ What testing have you done?
 * Boot to login screen
 * Login, add 2 access points
 * Perform backup
+* Restore backup
 
 ## Gotchas
-* Probably have to tweak the JVM args to set max heap on a low memory pi. This starts for me on a Pi 4 1gb but its not been running long yet
 * Might need a big-ish SD card (64gb?)
 * From tp-link? Please feel free to make some raspbery pi image for the community based on this!
 
