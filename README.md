@@ -44,9 +44,7 @@ Dont - its controlled automatically by omada
 
 Backup settings:
 
-settings -> maintenance -> backup -> click export, a file will be prepared and then it downloads. Even with just 2 access points this takes several minutes just for 2 access points. Mine seemed to stick on 1% but eventually worked
-
-Now you have a file on the server
+settings -> maintenance -> backup -> click export, a file will be prepared and then it downloads.
 
 Shut down the pi, flash a new image on an additional SD card and then restore from backup when the new image boots. If there are problems just swap back to the old SD card.
 
