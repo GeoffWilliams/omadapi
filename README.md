@@ -6,6 +6,7 @@ A fork of [pi-gen](https://github.com/RPi-Distro/pi-gen/) to build a custom imag
 Features:
 * [MongoDB 4.4.26](https://github.com/GeoffWilliams/mongodb-raspberrypi-binaries/releases/tag/v4.4.26)
 * OpenJDK 17
+* jsvc 1.3.4
 * Plug and play - just burn the image ssh in on ethernet (look for IP address on router)
 * Omada 5.12.7 is already installed and set to start automatically
 * Default username: `omada`
