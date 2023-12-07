@@ -1,0 +1,18 @@
+ ________  _____ ______   ________  ________  ________  ________  ___
+|\   __  \|\   _ \  _   \|\   __  \|\   ___ \|\   __  \|\   __  \|\  \
+\ \  \|\  \ \  \\\__\ \  \ \  \|\  \ \  \_|\ \ \  \|\  \ \  \|\  \ \  \
+ \ \  \\\  \ \  \\|__| \  \ \   __  \ \  \ \\ \ \   __  \ \   ____\ \  \
+  \ \  \\\  \ \  \    \ \  \ \  \ \  \ \  \_\\ \ \  \ \  \ \  \___|\ \  \
+   \ \_______\ \__\    \ \__\ \__\ \__\ \_______\ \__\ \__\ \__\    \ \__\
+    \|_______|\|__|     \|__|\|__|\|__|\|_______|\|__|\|__|\|__|     \|__|
+
+
+EXPERIMENTAL - USE AT OWN RISK!
+
+Welcome to omadapi, ready to use omada server based on Raspbery Pi OS bookworm.
+
+Login to UI:
+* http: http://omadapi:8088 (redirects to TLS port)
+* https: https://omadapi:8043
+
+Have lots of fun!

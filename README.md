@@ -13,6 +13,7 @@ Features:
 * Default hostname `omadapi` (your router may register this if you run something good like OpenWrt)
 * Access via ssh
 * **CHANGE THE PASSWORD!!!**
+* Java memory is tuned for 1GB Rasberry Pi since thats what im rocking. If you have more memory adjust `-Xmx` in `/etc/init.d/tpeap`. Dont forget to leave memory for the system!
 
 ## Omada
 When booted, omada will be available at:
@@ -38,19 +39,49 @@ Dont - its controlled automatically by omada
 
 ## Upgrades
 
-Follow the vendor instructions to update the omada debian package. Once installed you have a regular Linux system with the package installed (no docker, etc - although that might be worth looking at).
+Havent tested these procedures yet since no updates:
+
+### Option 1 (swap)
+
+Backup settings:
+
+settings -> maintenance -> backup -> click export, a file will be prepared and then it downloads. Even with just 2 access points this takes several minutes just for 2 access points. Mine seemed to stick on 1% but eventually worked
+
+Now you have a file on the server
+
+Shut down the pi, flash a new image on an additional SD card and then restore from backup when the new image boots. If there are problems just swap back to the old SD card.
+
+
+### Option 2 (in-place)
+
+Follow the vendor instructions to update the omada debian package. Once installed you have a regular Linux system with the package installed, so you should be able to just click the update button.
+
+This is riskier since your operating on a running device... upgrade breaks for some reason now you have degraded network and a broken controller.
+
+Also check when upgrading that any `-Xmx` options are preserved in `/opt/tplink/EAPController/bin/control.sh` to avoid getting out of memory errors after upgrading.
 
 ## Testing
 
 What testing have you done?
 
-* Basically none - it boots and the login screen loads
-* Im waiting to unpack and setup my access points
+* Boot to login screen
+* Login, add 2 access points
+* Perform backup
 
 ## Gotchas
 * Probably have to tweak the JVM args to set max heap on a low memory pi. This starts for me on a Pi 4 1gb but its not been running long yet
-* Might need a big-ish SD card (32gb?)
+* Might need a big-ish SD card (64gb?)
 * From tp-link? Please feel free to make some raspbery pi image for the community based on this!
+
+## Building the image
+
+To build the image yourself:
+1. Read the pi-gen docs at the bottom of this file to setup your build environment
+2. Clone the repo
+3. Switch to branch `omada`
+4. Adjust (or disable...) proxy configuration in `config`. It seems necessary to build with an apt proxy to prevent timeouts
+4. Run `build-docker.sh`
+5. Burn the `full` image that the script generates with [Balena Etcher](https://etcher.balena.io/) or similar, then put SD card in pi and power on
 
 ## Status
 Just for fun :) I dont have much time to maintain this so im "donating this to the community".
