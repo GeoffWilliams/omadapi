@@ -1,7 +1,7 @@
 # omadapi
 
 ## Whats this?
-A fork of []pi-gen](https://github.com/RPi-Distro/pi-gen/) to build a custom image for omada on raspberry pi (~4)
+A fork of [pi-gen](https://github.com/RPi-Distro/pi-gen/) to build a custom image for omada on raspberry pi (~4)
 
 Features:
 * [MongoDB 4.4.26](https://github.com/GeoffWilliams/mongodb-raspberrypi-binaries/releases/tag/v4.4.26)
