@@ -51,11 +51,9 @@ Shut down the pi, flash a new image on an additional SD card and then restore fr
 
 ### Option 2 (in-place)
 
-Follow the vendor instructions to update the omada debian package. Once installed you have a regular Linux system with the package installed, so you should be able to just click the update button.
+Follow the vendor instructions to update the omada debian package. Omadapi is just a regular Linux system so vendor upgrade path should work, with the caveat that you need to restore `/opt/tplink/EAPController/bin/control.sh` after installation to prevent memory and java errors unless fixed upstream.
 
-This is riskier since your operating on a running device... upgrade breaks for some reason now you have degraded network and a broken controller.
-
-Also check when upgrading that any `-Xmx` options are preserved in `/opt/tplink/EAPController/bin/control.sh` to avoid getting out of memory errors after upgrading.
+This is riskier since your operating on a running device... if upgrade breaks for some reason now you have degraded network _and_ a broken controller.
 
 ## Testing
 
