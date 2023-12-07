@@ -1,3 +1,70 @@
+# omadapi
+
+## Whats this?
+A fork of []pi-gen](https://github.com/RPi-Distro/pi-gen/) to build a custom image for omada on raspberry pi (~4)
+
+Features:
+* [MongoDB 4.4.26](https://github.com/GeoffWilliams/mongodb-raspberrypi-binaries/releases/tag/v4.4.26)
+* OpenJDK 17
+* Plug and play - just burn the image ssh in on ethernet (look for IP address on router)
+* Omada 5.12.7 is already installed and set to start automatically
+* Default username: `omada`
+* Default password: `omada`
+* Default hostname `omadapi` (your router may register this if you run something good like OpenWrt)
+* Access via ssh
+* **CHANGE THE PASSWORD!!!**
+
+## Omada
+When booted, omada will be available at:
+* http: [http://omadapi:8088](http://omadapi:8088) (redirects to TLS port)
+* https: [https://omadapi:8043](https://omadapi:8043)
+
+Ehere `omadapi` is the hostname or IP address of the pi. TLS certificate is self-signed so you have to click-through the browser security warning.
+
+## Start/stop omada
+
+```shell
+/etc/init.d/tpeap start
+/etc/init.d/tpeap stop
+```
+
+## Logs?
+
+In `/opt/tplink/EAPController/logs/`
+
+## Start/stop mongodb
+
+Dont - its controlled automatically by omada
+
+## Upgrades
+
+Follow the vendor instructions to update the omada debian package. Once installed you have a regular Linux system with the package installed (no docker, etc - although that might be worth looking at).
+
+## Testing
+
+What testing have you done?
+
+* Basically none - it boots and the login screen loads
+* Im waiting to unpack and setup my access points
+
+## Gotchas
+* Probably have to tweak the JVM args to set max heap on a low memory pi. This starts for me on a Pi 4 1gb but its not been running long yet
+* Might need a big-ish SD card (32gb?)
+* From tp-link? Please feel free to make some raspbery pi image for the community based on this!
+
+## Status
+Just for fun :) I dont have much time to maintain this so im "donating this to the community".
+
+Interested to help? Please open a ticket...
+
+
+
+
+
+
+# Upstream docs below
+
+
 # pi-gen
 
 Tool used to create Raspberry Pi OS images. (Previously known as Raspbian).

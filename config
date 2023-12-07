@@ -1,0 +1,16 @@
+IMG_NAME=omadapi
+# no mongo builds for bookworm
+RELEASE=bookworm
+LOCALE_DEFAULT="en_US.UTF-8"
+TARGET_HOSTNAME="omadapi"
+KEYBOARD_KEYMAP=us
+KEYBOARD_LAYOUT="English (US)"
+TIMEZONE_DEFAULT=UTC
+FIRST_USER_NAME=omada
+FIRST_USER_PASS=omada
+ENABLE_SSH=1
+STAGE_LIST="stage0 stage1 stage2 stageomada"
+# this is my home apt cache - get lots of failing builds without a cache...
+# im running squid-deb-proxy
+APT_PROXY=http://squid.lan.asio:8000
+DISABLE_FIRST_BOOT_USER_RENAME=1
