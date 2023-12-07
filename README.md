@@ -21,7 +21,7 @@ When booted, omada will be available at:
 * http: [http://omadapi:8088](http://omadapi:8088) (redirects to TLS port)
 * https: [https://omadapi:8043](https://omadapi:8043)
 
-Ehere `omadapi` is the hostname or IP address of the pi. TLS certificate is self-signed so you have to click-through the browser security warning.
+Where `omadapi` is the hostname or IP address of the pi. TLS certificate is self-signed so you have to click-through the browser security warning.
 
 ## Start/stop omada
 
