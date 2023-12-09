@@ -65,6 +65,7 @@ What testing have you done?
 * Restore backup
 * Mesh wifi with 2 access points
 * Firmware update access points
+* 33 hour+ uptime (rebooted after loss of internet connectivity to get device firmware update notification)
 
 
 ## Gotchas
