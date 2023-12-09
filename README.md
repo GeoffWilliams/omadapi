@@ -51,9 +51,21 @@ Shut down the pi, flash a new image on an additional SD card and then restore fr
 
 ### Option 2 (in-place)
 
-Follow the vendor instructions to update the omada debian package. Omadapi is just a regular Linux system so vendor upgrade path should work, with the caveat that you need to restore `/opt/tplink/EAPController/bin/control.sh` after installation to prevent memory and java errors unless fixed upstream.
+Follow the vendor instructions to update the omada debian package. Omadapi is just a regular Linux system so vendor upgrade path should work
 
-This is riskier since your operating on a running device... if upgrade breaks for some reason now you have degraded network _and_ a broken controller.
+**Post upgrade steps**
+
+* Replace `/opt/tplink/EAPController/bin/control.sh` with contents of https://github.com/GeoffWilliams/omadapi/blob/omadapi/stageomada/10-omada/files/control.sh (and check yourself for any inc
+* Ensure vendored `mongod` is a symlink to system `mongod`:
+
+```shell
+mv /opt/tplink/EAPController/bin/mongod /opt/tplink/EAPController/bin/mongod.orig
+ln -s /usr/local/bin/mongod /opt/tplink/EAPController/bin/mongod`
+```
+
+...Reboot.
+
+This process is riskier since your operating on a running device... if upgrade breaks for some reason now you have degraded network _and_ a broken controller. Make sure you have a backup before starting.
 
 ## Testing
 
