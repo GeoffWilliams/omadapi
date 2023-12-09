@@ -63,6 +63,9 @@ What testing have you done?
 * Login, add 2 access points
 * Perform backup
 * Restore backup
+* Mesh wifi with 2 access points
+* Firmware update access points
+
 
 ## Gotchas
 * Might need a big-ish SD card (64gb?)
