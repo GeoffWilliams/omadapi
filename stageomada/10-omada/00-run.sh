@@ -8,9 +8,11 @@ sed -i 's/^#CONF_MAXSWAP=2048/CONF_MAXSWAP=16384/' ${ROOTFS_DIR}/etc/dphys-swapf
 
 
 # check for updates here! https://www.tp-link.com/en/support/download/omada-software-controller/
-OMADA_VERSION="5.13.22"
-wget --directory-prefix=${ROOTFS_DIR}/packages \
-    https://static.tp-link.com/upload/software/2023/202312/20231201/Omada_SDN_Controller_v${OMADA_VERSION}_Linux_x64.deb
+# Upstream sometimes change the filename supplied to wget after clicking the link so force saving
+# with a consistent output file to prevent apt error: unsupported file ... given on commandline
+OMADA_VERSION="5.13.23"
+wget -O ${ROOTFS_DIR}/packages/Omada_SDN_Controller_v${OMADA_VERSION}_linux_x64.deb \
+    https://static.tp-link.com/upload/software/2024/202401/20240112/Omada_SDN_Controller_v${OMADA_VERSION}_linux_x64.deb
 
 # own debian package for jsvc
 JSVC_VERSION=1.3.4
@@ -27,7 +29,7 @@ ln -s /usr/lib/jvm/java-17-openjdk-arm64/lib/server /usr/lib/jvm/java-17-openjdk
 # nasty hack to prevent trying to run omada in quemu
 mv /usr/bin/jsvc /usr/bin/jsvc.nouse
 echo "exit 0" >> /usr/bin/jsvc
-apt install -y /packages/Omada_SDN_Controller_v${OMADA_VERSION}_Linux_x64.deb
+apt install -y /packages/Omada_SDN_Controller_v${OMADA_VERSION}_linux_x64.deb
 mv /usr/bin/jsvc.nouse /usr/bin/jsvc
 
 # omada does something strange with the mongod binary

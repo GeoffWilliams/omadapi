@@ -51,6 +51,10 @@ In `/opt/tplink/EAPController/logs/`
 
 Dont - its controlled automatically by Omada
 
+## Backup/Restore
+
+All done through the Omada UI, [instructions from tp-link](https://www.tp-link.com/us/support/faq/2677/). These are for the hardware controller but should still apply to Omada software release since its the same UI.
+
 ## Upgrades
 
 ### Option 1 (swap)
@@ -59,26 +63,36 @@ Backup settings:
 
 settings -> maintenance -> backup -> click export, a file will be prepared and then it downloads.
 
-Shut down the pi, flash a new image on an additional SD card and then restore from backup when the new image boots. If there are problems just swap back to the old SD card.
+1. Export settings from Omada UI
+2. Shut down the pi
+3. Flash a new image on an additional SD card
+4. Boot image
+5. **ssh in and set password**
+6. Go to Omada UI and import settings
+
+If there are problems just swap back to the old SD card.
 
 
 ### Option 2 (in-place)
 
-Follow the vendor instructions to update the Omada debian package. Omadapi is just a regular Linux system so vendor upgrade path should work. After upgrade, these changes are required to re-apply `omadapi` settings:
+This process is riskier since your operating on a running device... if upgrade breaks for some reason now you have degraded network _and_ a broken controller. Make sure you have a backup before starting.
+
+Omadapi is just a regular Linux system so vendor upgrade path should work so follow tp-link instructions to update the Omada debian package.
+
+After upgrade, these changes are required to re-apply `omadapi` settings:
 
 **Post upgrade steps**
 
-* Replace `/opt/tplink/EAPController/bin/control.sh` with contents of https://github.com/GeoffWilliams/omadapi/blob/omadapi/stageomada/10-omada/files/control.sh (and check yourself for any inc
-* Ensure vendored `mongod` is a symlink to system `mongod`:
+1. Replace `/opt/tplink/EAPController/bin/control.sh` with contents of https://github.com/GeoffWilliams/omadapi/blob/omadapi/stageomada/10-omada/files/control.sh (and check yourself for any inc
+2. Ensure vendored `mongod` is a symlink to system `mongod`:
 
 ```shell
 mv /opt/tplink/EAPController/bin/mongod /opt/tplink/EAPController/bin/mongod.orig
 ln -s /usr/local/bin/mongod /opt/tplink/EAPController/bin/mongod`
 ```
 
-...Reboot.
+3. Reboot
 
-This process is riskier since your operating on a running device... if upgrade breaks for some reason now you have degraded network _and_ a broken controller. Make sure you have a backup before starting.
 
 ## Testing
 
@@ -104,6 +118,7 @@ To build the image yourself:
 4. Adjust (or disable...) proxy configuration in `config`. It seems necessary to build with an apt proxy to prevent timeouts
 4. Run `build-docker.sh`
 5. Burn the `full` image that the script generates with [Balena Etcher](https://etcher.balena.io/) or similar, then put SD card in pi and power on
+6. For publising, rename the image file to include the version, eg:`omadapi-5.13.22-0.zip`
 
 ## Status
 
