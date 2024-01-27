@@ -92,10 +92,6 @@ What testing have you done?
 * Firmware update access points
 * 33 hour+ uptime (rebooted after loss of internet connectivity to get device firmware update notification)
 
-## Gotchas
-* Larger deployments untested, please report successes/failures
-* From tp-link? Please feel free to make some raspbery pi image for the community based on this!
-
 ## Building the image
 
 `omdapi`` is A fork of [pi-gen](https://github.com/RPi-Distro/pi-gen/) to build a custom image for omada on raspberry pi (~4) so can be updated for newer Raspbery Pi OS releases by rebasing.
@@ -110,9 +106,10 @@ To build the image yourself:
 5. Burn the `full` image that the script generates with [Balena Etcher](https://etcher.balena.io/) or similar, then put SD card in pi and power on
 
 ## Status
-Just for fun :) I dont have much time to maintain this so im "donating this to the community".
 
-Interested to help? Please open a ticket...
+* Larger deployments untested, please report successes/failures
+* From tp-link? Please feel free to make some raspbery pi image for the community based on this!
+* Interested to help? Please open a ticket...
 
 ## Acknowledgements
 * Lots of good infos on the [Omada Raspbery Pi forum thread](https://community.tp-link.com/en/business/forum/topic/528450)
