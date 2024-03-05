@@ -28,7 +28,7 @@ JAVA_TOOL="${JRE_HOME}/bin/java"
 # dont operate on /etc/init.d/tpeap as it needs to remain a symlink for the script
 # to work: OMADA_HOME=$(dirname $(dirname $(readlink -f $0)))
 # removed JVM tuning flags from upstream to let Java do its thing...
-JAVA_OPTS="-server -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${LOG_DIR}/java_heapdump.hprof -Djava.awt.headless=true -Xmx300m"
+JAVA_OPTS="-server -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${LOG_DIR}/java_heapdump.hprof -Djava.awt.headless=true -XX:MaxRAMPercentage=40"
 MAIN_CLASS="com.tplink.smb.omada.starter.OmadaLinuxMain"
 
 OMADA_USER=${OMADA_USER:-omada}
