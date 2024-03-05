@@ -3,7 +3,7 @@ console-setup keyboard-configuration debconf-utils parted
 build-essential manpages-dev bash-completion gdb pkg-config
 python-is-python3
 v4l-utils
-python3-libgpiod
+gpiod python3-libgpiod
 python3-gpiozero
 pigpio python3-pigpio raspi-gpio python3-rpi.gpio
 python3-spidev
@@ -13,7 +13,6 @@ lua5.1
 luajit
 ca-certificates curl
 fake-hwclock nfs-common usbutils
-libraspberrypi-dev libraspberrypi-doc libfreetype6-dev
 dosfstools
 dphys-swapfile
 raspberrypi-sys-mods
@@ -37,3 +36,4 @@ udisks2
 unzip zip p7zip-full
 file
 kms++-utils
+python3-venv

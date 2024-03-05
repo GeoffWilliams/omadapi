@@ -135,9 +135,6 @@ time ${DOCKER} run \
   $DOCKER_CMDLINE_PRE \
   --name "${DOCKER_CMDLINE_NAME}" \
   --privileged \
-  --cap-add=ALL \
-  -v /dev:/dev \
-  -v /lib/modules:/lib/modules \
   ${PIGEN_DOCKER_OPTS} \
   --volume "${CONFIG_FILE}":/config:ro \
   -e "GIT_HASH=${GIT_HASH}" \
@@ -156,7 +153,7 @@ time ${DOCKER} run \
 echo "copying results from deploy/"
 ${DOCKER} cp "${CONTAINER_NAME}":/pi-gen/deploy - | tar -xf -
 
-echo "copying log from container ${CONTAINER_NAME} to depoy/"
+echo "copying log from container ${CONTAINER_NAME} to deploy/"
 ${DOCKER} logs --timestamps "${CONTAINER_NAME}" &>deploy/build-docker.log
 
 ls -lah deploy
