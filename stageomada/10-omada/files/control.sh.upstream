@@ -76,7 +76,7 @@ check_omada_user() {
 }
 
 check_version() {
-    echo "Omada Controller v5.13.22 for Linux (X64)"
+    echo "Omada Controller v5.14.26.1 for Linux (X64)"
 }
 
 # root permission check
