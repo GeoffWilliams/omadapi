@@ -1,4 +1,5 @@
-wget 
+wget
 openjdk-17-jdk-headless
 jsvc
 chromium
+prometheus-node-exporter
