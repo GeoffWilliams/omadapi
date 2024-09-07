@@ -158,7 +158,17 @@ do
 done
 
 term() {
-	true; #TODO: Cleanup
+	if [ "$?" -ne 0 ]; then
+		log "Build failed"
+	else
+		log "Build finished"
+	fi
+	unmount "${STAGE_WORK_DIR}"
+	if [ "$STAGE" = "export-image" ]; then
+		for img in "${STAGE_WORK_DIR}/"*.img; do
+			unmount_image "$img"
+		done
+	fi
 }
 
 trap term EXIT INT TERM
@@ -167,10 +177,9 @@ export PI_GEN=${PI_GEN:-pi-gen}
 export PI_GEN_REPO=${PI_GEN_REPO:-https://github.com/RPi-Distro/pi-gen}
 export PI_GEN_RELEASE=${PI_GEN_RELEASE:-Raspberry Pi reference}
 
-if [ -z "${IMG_NAME}" ]; then
-	echo "IMG_NAME not set" 1>&2
-	exit 1
-fi
+export ARCH=arm64
+export RELEASE=${RELEASE:-bookworm} # Don't forget to update stage0/prerun.sh
+export IMG_NAME="${IMG_NAME:-raspios-$RELEASE-$ARCH}"
 
 export USE_QEMU="${USE_QEMU:-0}"
 export IMG_DATE="${IMG_DATE:-"$(date +%Y-%m-%d)"}"
@@ -198,7 +207,6 @@ export TARGET_HOSTNAME=${TARGET_HOSTNAME:-raspberrypi}
 export FIRST_USER_NAME=${FIRST_USER_NAME:-pi}
 export FIRST_USER_PASS
 export DISABLE_FIRST_BOOT_USER_RENAME=${DISABLE_FIRST_BOOT_USER_RENAME:-0}
-export RELEASE=${RELEASE:-bookworm} # Don't forget to update stage0/prerun.sh
 export WPA_COUNTRY
 export ENABLE_SSH="${ENABLE_SSH:-0}"
 export PUBKEY_ONLY_SSH="${PUBKEY_ONLY_SSH:-0}"
@@ -215,7 +223,6 @@ export GIT_HASH=${GIT_HASH:-"$(git rev-parse HEAD)"}
 export PUBKEY_SSH_FIRST_USER
 
 export CLEAN
-export IMG_NAME
 export APT_PROXY
 
 export STAGE
@@ -246,6 +253,15 @@ if [ "$SETFCAP" != "1" ]; then
 fi
 
 dependencies_check "${BASE_DIR}/depends"
+
+echo "Checking native $ARCH executable support..."
+if ! arch-test -n "$ARCH"; then
+	echo "WARNING: Only a native build environment is supported. Checking emulated support..."
+	if ! arch-test "$ARCH"; then
+		echo "No fallback mechanism found. Ensure your OS has binfmt_misc support enabled and configured."
+		exit 1
+	fi
+fi
 
 #check username is valid
 if [[ ! "$FIRST_USER_NAME" =~ ^[a-z][-a-z0-9_]*$ ]]; then
@@ -283,6 +299,7 @@ mkdir -p "${WORK_DIR}"
 log "Begin ${BASE_DIR}"
 
 STAGE_LIST=${STAGE_LIST:-${BASE_DIR}/stage*}
+export STAGE_LIST
 
 for STAGE_DIR in $STAGE_LIST; do
 	STAGE_DIR=$(realpath "${STAGE_DIR}")

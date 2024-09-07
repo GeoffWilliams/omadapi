@@ -1,4 +1,79 @@
 UNRELEASED:
+  * pipanel - allow customisation of more than 2 desktops
+  * pipanel - add customisation for labwc
+  * gui-pkinst - add whitelist to restrict installation to specified packages only
+  * pixflat-theme - add theme settings for labwc
+  * pishutdown - revert to original use of pkill to close desktop
+  * piclone - fix for potential buffer overflow vulnerability (that would never have actually happened…)
+  * lp-connection-editor - fix dialog icons on taskbar
+  * rp-prefapps - add Raspberry Pi Connect; remove SmartSim
+  * piwiz - add page to enable / disable Raspberry Pi Connect
+  * wf-panel-pi - constrain main menu to fit on small screens
+  * wf-panel-pi - fix dialog icons on taskbar
+  * wf-panel-pi - fix keyboard handling and icon highlighting for taskbar buttons
+  * raspberrypi-ui-mods - add configuration for labwc
+  * raspberrypi-ui-mods - add support for new touchscreens
+  * raspberrypi-ui-mods - systemd-inhibit used to override hardware power key on Pi 5
+  * rc-gui - add configuration of alternate keyboard layout
+  * rc-gui - add switching for Raspberry Pi Connect
+  * arandr - add brightness control for DSI displays
+  * arandr - more reliable method to detect virtual displays
+  * raspi-config - add setting of keyboard options
+  * raspi-config - add setting of PCIe speed
+  * raspi-config - add switching for Raspberry Pi Connect
+  * wayvnc - better handling for virtual displays
+  * wayvnc - improved encryption support
+  * GTK-3 - add keyboard shortcuts in combo boxes
+  * pcmanfm - allow customisation of more than 2 desktops
+  * pcmanfm - fix bug causing crash and inconsistent behaviour on certain drag and drop operations
+  * raspberrypi-sys-mods - add udev rule to allow backlight change
+  * raspberrypi-sys-mods - increase swapfile size
+  * raspberrypi-sys-mods - remove symlinks from paths in initramfs scripts
+  * wayfire - fix for crash when opening multiple Xwayland windows
+  * wayfire - fix for touchscreen bug when touching areas without windows
+  * labwc compositor installed as an alternative to wayfire; can be enabled in raspi-config
+  * various small bug fixes and tweaks
+  * Chromium updated to 125.0.6422.133
+  * Firefox updated to 126.0
+  * Raspberry Pi firmware 3590de0c181d433af368a95f15bc480bdaff8b47
+  * Linux kernel 6.6.31 - c1432b4bae5b6582f4d32ba381459f33c34d1424
+2024-03-15:
+  * Audio streams will now not be interrupted when other audio devices are connected or disconnected
+  * Keyboard shortcut to install Orca no longer prompts for password, and will now wait for clock synchronisation rather than failing silently
+  * Orca screen reader updated to version 45 with various additional small bug fixes
+  * Obsolete fbturbo video driver removed
+  * Bug fix - saved display resolution settings not reloading under X
+  * Raspberry Pi firmware 6e0ae774407d68659b50cfbeb9f493ed16718866
+  * Linux kernel 6.6.20 - 6f16847710cc0502450788b9f12f0a14d3429668
+2024-03-12:
+  * Added setting of headless resolution to Screen Configuration
+  * Removed setting of headless resolution for Wayland from Raspberry Pi Configuration
+  * Improved handling of power button on Raspberry Pi 5
+  * Popover windows from taskbar replaced with conventional windows
+  * Shutdown assistant now closes all user processes when logging out
+  * Wayvnc updated to improve compatibility with various VNC clients
+  * Wayvnc now controlled by systemd
+  * Audio icon on taskbar hidden if no audio devices connected
+  * Alternative mouse cursor shown during drag-and-drop operations
+  * raspi-config now allows EEPROM to be upgraded
+  * Speed improvement when opening bluetooth and network menus
+  * Tweaks to display of some widgets under dark theme
+  * Improved compatibility with alternative window managers
+  * Bug fix - prevent multiple file manager confirm dialogs being overlaid
+  * Bug fix - drag-and-drop in file manager causing incorrect files to move
+  * Bug fix - memory leaks in volume and bluetooth menus
+  * Bug fix - GPU load sometimes not correctly reported in plugin and task manager
+  * Bug fix - crash when closing windows with non-GTK headerbars
+  * Bug fix - spurious button hover highlights on touchscreens
+  * Bug fix - windows on other monitors being hidden from taskbar
+  * Bug fix - corrected power monitoring brownout detection
+  * Bug fix - wayfire keyboard layout settings sometimes not loading
+  * Removed fbturbo xorg video driver as it is no longer useful
+  * Chromium updated to 122.0.6261.89
+  * Firefox updated to 123.0
+  * Raspberry Pi firmware 6e0ae774407d68659b50cfbeb9f493ed16718866
+  * Linux kernel 6.6.20 - 6f16847710cc0502450788b9f12f0a14d3429668
+2023-12-11:
   * Fix Raspberry Pi Imager's WLAN configuration for lite images
 2023-12-05:
   * Serial port switching in rc_gui and raspi-config modified to support Raspberry Pi 5
