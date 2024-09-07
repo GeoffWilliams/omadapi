@@ -12,11 +12,12 @@ Features:
 * Plug and play - just burn the image ssh in on ethernet (look for IP address on router)
 * Omada is already installed and set to start automatically
 * Access via ssh
+* Prometheus Node Exporter
 
 ## Recommended hardware
 
-* Raspberry Pi 4 Model B 1GB edition
-* If you have more memory adjust `-Xmx` in `/opt/tplink/EAPController/bin/control.sh`. Dont forget to leave memory for the system!
+* Raspberry Pi 5 Model B 4GB edition (originally developed for Rapsberry Pi 4 Model B 1GB - works but a bit slow)
+* Memory is allocated by percentage so accounts for to account for systems with more RAM. You can adjust `-XX:MaxRAMPercentage` in `/opt/tplink/EAPController/bin/control.sh`. Dont forget to leave memory for the system!
 
 # After installation
 
@@ -108,7 +109,7 @@ What testing have you done?
 
 ## Building the image
 
-`omdapi`` is A fork of [pi-gen](https://github.com/RPi-Distro/pi-gen/) to build a custom image for omada on raspberry pi (~4) so can be updated for newer Raspbery Pi OS releases by rebasing.
+`omdapi` is A fork of [pi-gen](https://github.com/RPi-Distro/pi-gen/) to build a custom image for omada on raspberry pi (~4) so can be updated for newer Raspbery Pi OS releases by rebasing.
 
 To build the image yourself:
 
