@@ -19,7 +19,7 @@ To install the required dependencies for `pi-gen` you should run:
 ```bash
 apt-get install coreutils quilt parted qemu-user-static debootstrap zerofree zip \
 dosfstools libarchive-tools libcap2-bin grep rsync xz-utils file git curl bc \
-gpg pigz xxd
+gpg pigz xxd arch-test
 ```
 
 The file `depends` contains a list of tools needed.  The format of this
@@ -52,7 +52,7 @@ environment variables.
 
 The following environment variables are supported:
 
- * `IMG_NAME` **required** (Default: unset)
+ * `IMG_NAME` (Default: `raspios-$RELEASE-$ARCH`, for example: `raspios-bookworm-armhf`)
 
    The name of the image to build with the current stage directories. Use this
    variable to set the root name of your OS, eg `IMG_NAME=Frobulator`.
@@ -63,7 +63,7 @@ The following environment variables are supported:
    The release name to use in `/etc/issue.txt`. The default should only be used
    for official Raspberry Pi builds.
 
-* `RELEASE` (Default: bookworm)
+* `RELEASE` (Default: `bookworm`)
 
    The release version to build images against. Valid values are any supported
    Debian release. However, since different releases will have different sets of
@@ -77,12 +77,6 @@ The following environment variables are supported:
    will not be included in the image, making it safe to use an `apt-cacher` or
    similar package for development.
 
-   If you have Docker installed, you can set up a local apt caching proxy to
-   like speed up subsequent builds like this:
-
-       docker-compose up -d
-       echo 'APT_PROXY=http://172.17.0.1:3142' >> config
-
  * `BASE_DIR`  (Default: location of `build.sh`)
 
    **CAUTION**: Currently, changing this value will probably break build.sh
@@ -90,7 +84,7 @@ The following environment variables are supported:
    Top-level directory for `pi-gen`.  Contains stage directories, build
    scripts, and by default both work and deployment directories.
 
- * `WORK_DIR`  (Default: `"$BASE_DIR/work"`)
+ * `WORK_DIR`  (Default: `$BASE_DIR/work`)
 
    Directory in which `pi-gen` builds the target system.  This value can be
    changed if you have a suitably large, fast storage location for stages to
@@ -100,7 +94,7 @@ The following environment variables are supported:
 
    **CAUTION**: If your working directory is on an NTFS partition you probably won't be able to build: make sure this is a proper Linux filesystem.
 
- * `DEPLOY_DIR`  (Default: `"$BASE_DIR/deploy"`)
+ * `DEPLOY_DIR`  (Default: `$BASE_DIR/deploy`)
 
    Output directory for target system images and NOOBS bundles.
 
@@ -127,20 +121,20 @@ The following environment variables are supported:
    information on this. Usually 0 is no compression but very fast, up to 9 with
    the best compression but very slow ).
 
- * `USE_QEMU` (Default: `"0"`)
+ * `USE_QEMU` (Default: `0`)
 
    Setting to '1' enables the QEMU mode - creating an image that can be mounted via QEMU for an emulated
    environment. These images include "-qemu" in the image file name.
 
- * `LOCALE_DEFAULT` (Default: "en_GB.UTF-8" )
+ * `LOCALE_DEFAULT` (Default: 'en_GB.UTF-8' )
 
    Default system locale.
 
- * `TARGET_HOSTNAME` (Default: "raspberrypi" )
+ * `TARGET_HOSTNAME` (Default: 'raspberrypi' )
 
    Setting the hostname to the specified value.
 
- * `KEYBOARD_KEYMAP` (Default: "gb" )
+ * `KEYBOARD_KEYMAP` (Default: 'gb' )
 
    Default keyboard keymap.
 
@@ -148,7 +142,7 @@ The following environment variables are supported:
    keyboard-configuration` and look at the
    `keyboard-configuration/xkb-keymap` value.
 
- * `KEYBOARD_LAYOUT` (Default: "English (UK)" )
+ * `KEYBOARD_LAYOUT` (Default: 'English (UK)' )
 
    Default keyboard layout.
 
@@ -156,7 +150,7 @@ The following environment variables are supported:
    keyboard-configuration` and look at the
    `keyboard-configuration/variant` value.
 
- * `TIMEZONE_DEFAULT` (Default: "Europe/London" )
+ * `TIMEZONE_DEFAULT` (Default: 'Europe/London' )
 
    Default keyboard layout.
 
@@ -444,7 +438,7 @@ To resolve this, ensure that the following files are available (install them if 
 
 ```
 /lib/modules/$(uname -r)/kernel/fs/binfmt_misc.ko
-/usr/bin/qemu-arm-static
+/usr/bin/qemu-aarch64-static
 ```
 
 You may also need to load the module by hand - run `modprobe binfmt_misc`.
