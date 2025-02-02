@@ -10,9 +10,9 @@ sed -i 's/^#CONF_MAXSWAP=2048/CONF_MAXSWAP=16384/' ${ROOTFS_DIR}/etc/dphys-swapf
 # check for updates here! https://www.tp-link.com/en/support/download/omada-software-controller/
 # Upstream sometimes change the filename supplied to wget after clicking the link so force saving
 # with a consistent output file to prevent apt error: unsupported file ... given on commandline
-OMADA_VERSION="5.14.26.1"
+OMADA_VERSION="5.15.8.2"
 wget -O ${ROOTFS_DIR}/packages/Omada_SDN_Controller_v${OMADA_VERSION}_linux_x64.deb \
-    https://static.tp-link.com/upload/software/2024/202407/20240710/Omada_SDN_Controller_v5.14.26.1_linux_x64.deb
+    https://static.tp-link.com/upload/software/2025/202501/20250109/Omada_SDN_Controller_v5.15.8.2_linux_x64.deb
 
 # own debian package for jsvc
 JSVC_VERSION=1.3.4
@@ -46,5 +46,10 @@ mv ${ROOTFS_DIR}/opt/tplink/EAPController/bin/control.sh ${ROOTFS_DIR}/opt/tplin
 
 install -m 644 files/motd "${ROOTFS_DIR}/etc/motd"
 install -m 755 files/control.sh "${ROOTFS_DIR}/opt/tplink/EAPController/bin/control.sh"
+
+# Restore system defaults from stage0/00-configure-apt/00-run.sh
+if [ -n "$APT_SOURCES" ]; then
+	mv "${ROOTFS_DIR}/etc/apt/sources.list.final" "${ROOTFS_DIR}/etc/apt/sources.list"
+fi
 
 # omada self enables on boot so were done

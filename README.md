@@ -116,7 +116,7 @@ To build the image yourself:
 1. Read the [pi-gen docs](./docs/pi-gen.md) to setup your build environment
 2. Clone the repo
 3. Switch to branch `omada`
-4. Adjust (or disable...) proxy configuration in `config`. It seems necessary to build with an apt proxy to prevent timeouts
+4. Setup your `sources.list` lines in `config` (eg to point to a nexus). Local caching seems required to avoid timeout
 4. Run `build-docker.sh`
 5. Burn the `full` image that the script generates with [Balena Etcher](https://etcher.balena.io/) or similar, then put SD card in pi and power on
 6. For publising, rename the image file to include the version, eg:`omadapi-5.13.22-0.zip`

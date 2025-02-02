@@ -6,11 +6,20 @@ sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list"
 sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/raspi.list"
 
 if [ -n "$APT_PROXY" ]; then
-	install -m 644 files/51cache "${ROOTFS_DIR}/etc/apt/apt.conf.d/51cache"
-	sed "${ROOTFS_DIR}/etc/apt/apt.conf.d/51cache" -i -e "s|APT_PROXY|${APT_PROXY}|"
-else
-	rm -f "${ROOTFS_DIR}/etc/apt/apt.conf.d/51cache"
+	echo "support for APT_PROXY was removed. Update your build"
+	exit 1
 fi
+
+if [ -n "$APT_SOURCES" ]; then
+	# cleaned up in stageomada
+	mv "${ROOTFS_DIR}/etc/apt/sources.list" "${ROOTFS_DIR}/etc/apt/sources.list.final"
+	echo "$APT_SOURCES" > "${ROOTFS_DIR}/etc/apt/sources.list"
+	echo "using APT_SOURCES"
+	cat "${ROOTFS_DIR}/etc/apt/sources.list"
+fi
+
+echo "apt sources.list for this build:"
+cat "${ROOTFS_DIR}/etc/apt/sources.list"
 
 cat files/raspberrypi.gpg.key | gpg --dearmor > "${STAGE_WORK_DIR}/raspberrypi-archive-stable.gpg"
 install -m 644 "${STAGE_WORK_DIR}/raspberrypi-archive-stable.gpg" "${ROOTFS_DIR}/etc/apt/trusted.gpg.d/"

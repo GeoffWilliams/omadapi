@@ -12,5 +12,16 @@ ENABLE_SSH=1
 STAGE_LIST="stage0 stage1 stage2 stageomada"
 # this is my home apt cache - get lots of failing builds without a cache...
 # im running squid-deb-proxy
-APT_PROXY=http://squid.lan.asio:8000
 DISABLE_FIRST_BOOT_USER_RENAME=1
+APT_SOURCES="
+deb http://nexus.ps.asio:8081/repository/debian_bookworm bookworm main non-free-firmware
+deb-src http://httpredir.debian.org/debian/ bookworm main non-free-firmware
+
+deb http://nexus.ps.asio:8081/repository/debian_bookworm_security bookworm-security main non-free-firmware
+deb-src http://security.debian.org/debian-security bookworm-security main non-free-firmware
+
+# bookworm-updates, to get updates before a point release is made;
+# see https://www.debian.org/doc/manuals/debian-reference/ch02.en.html # _updates_and_backports
+deb http://nexus.ps.asio:8081/repository/debian_bookworm_updates bookworm-updates main non-free-firmware
+deb-src http://httpredir.debian.org/debian/ bookworm-updates main non-free-firmware
+"

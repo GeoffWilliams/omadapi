@@ -224,6 +224,7 @@ export PUBKEY_SSH_FIRST_USER
 
 export CLEAN
 export APT_PROXY
+export APT_SOURCES
 
 export STAGE
 export STAGE_DIR
