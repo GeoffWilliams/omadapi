@@ -4,7 +4,7 @@ Omada on Raspberry Pi
 
 ## New in Omadapi v2
 
-* Omada 5.15.20.18
+* Omada 5.15.20.18 (onwards)
 * Significant modernizations to Omada mean less workarounds needed in omadapi:
     * [JDK 9 workarounds no longer required](https://github.com/GeoffWilliams/omadapi/blob/omadapi-bookworm-12.7/stageomada/10-omada/files/omada_java_workarounds.sh)
     * MongoDB 8.0

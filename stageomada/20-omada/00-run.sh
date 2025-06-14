@@ -10,9 +10,9 @@ sed -i 's/^#CONF_MAXSWAP=2048/CONF_MAXSWAP=16384/' ${ROOTFS_DIR}/etc/dphys-swapf
 # check for updates here! https://www.tp-link.com/en/support/download/omada-software-controller/
 # Upstream sometimes change the filename supplied to wget after clicking the link so force saving
 # with a consistent output file to prevent apt error: unsupported file ... given on commandline
-OMADA_VERSION="5.15.20.18"
+OMADA_VERSION="5.15.20.20"
 wget -O ${ROOTFS_DIR}/packages/Omada_SDN_Controller_v${OMADA_VERSION}_linux_x64.deb \
-    https://static.tp-link.com/upload/software/2025/202503/20250331/Omada_SDN_Controller_v5.15.20.18_linux_x64.deb
+    https://static.tp-link.com/upload/software/2025/202504/20250425/omada_v5.15.20.20_linux_x64_20250416110555.deb
 
 # own debian package for jsvc
 JSVC_VERSION=1.3.4
