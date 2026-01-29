@@ -1,6 +1,6 @@
 # Omadapi v2
 
-Omada on Raspberry Pi
+Omada on Raspberry Pi 5
 
 ## New in Omadapi v2
 
@@ -108,7 +108,7 @@ To build the image yourself:
 2. Clone the repo
 3. Switch to branch `omadapi_v2`
 4. Setup your `sources.list` lines in `config` (eg to point to a nexus). Local caching seems required to avoid timeout
-4. Run `build-docker.sh`
+4. Run `build-docker.sh` as `root`
 5. Burn the `full` image that the script generates with [Balena Etcher](https://etcher.balena.io/) or similar, then put SD card in pi and power on
 6. For publising, rename the image file to include the version, eg:`omadapi-5.13.22-0.zip`
 
